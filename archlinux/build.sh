@@ -9,6 +9,7 @@ fi
 
 if [ ! -f ${BASEDIR}/busybox ]; then
   wget https://www.busybox.net/downloads/binaries/1.35.0-x86_64-linux-musl/busybox
+  chmod u+x busybox
 fi
 
 if [ -x "$(command -v podman)" ]; then
