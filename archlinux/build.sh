@@ -7,8 +7,13 @@ if [ ! -f ${BASEDIR}/archlinux-bootstrap-x86_64.tar.gz ]; then
   wget http://mirror.archlinux.tw/ArchLinux/iso/2023.03.01/archlinux-bootstrap-x86_64.tar.gz
 fi
 
+if [ ! -f ${BASEDIR}/../common/busybox ]; then
+  echo "Need 'busybox' to continue the build process! Change directory to ../common/ and run 'make busybox' to download it!"
+  exit 1
+fi
+
 if [ ! -f ${BASEDIR}/busybox ]; then
-  wget https://www.busybox.net/downloads/binaries/1.35.0-x86_64-linux-musl/busybox
+  cp ../common/busybox .
   chmod u+x busybox
 fi
 
