@@ -4,5 +4,7 @@ ADD busybox /
 COPY archlinux-bootstrap-x86_64.tar.gz /
 RUN ["/busybox", "tar", "xvfz", "archlinux-bootstrap-x86_64.tar.gz", "--numeric-owner", "--overwrite", "--strip-components", "1"]
 RUN rm archlinux-bootstrap-x86_64.tar.gz
+RUN sed -i '/#Server\s\=\shttps\:\/\/mirror\.archlinux\.tw/s/^#//g' /etc/pacman.d/mirrorlist
+RUN pacman -Sy
 
 CMD ["/bin/sh"]
