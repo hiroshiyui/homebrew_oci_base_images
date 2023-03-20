@@ -1,0 +1,8 @@
+FROM scratch
+
+ADD busybox /
+COPY archlinux-bootstrap-x86_64.tar.gz /
+RUN ["/busybox", "tar", "xvfz", "archlinux-bootstrap-x86_64.tar.gz", "--numeric-owner", "--overwrite", "--strip-components", "1"]
+RUN rm archlinux-bootstrap-x86_64.tar.gz
+
+CMD ["/bin/sh"]
