@@ -1,0 +1,8 @@
+FROM scratch
+
+ADD busybox /
+COPY bootstrap_rootfs.tar /
+RUN ["/busybox", "tar", "xvf", "bootstrap_rootfs.tar", "--exclude", "bootstrap_rootfs/dev/*", "--numeric-owner", "--overwrite", "--strip-components", "1"]
+RUN rm bootstrap_rootfs.tar
+
+CMD ["/bin/bash"]

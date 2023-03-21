@@ -3,8 +3,7 @@
 all: greeting
 
 greeting:
-	@echo "Use 'make clean' to remove containers and images"
+	@echo "Use 'make clean' to remove archlinux-bootstrap-x86_64.tar.gz"
 
 clean:
-	podman rm -a
-	podman image rm -a
+	rm archlinux-bootstrap-x86_64.tar.gz
