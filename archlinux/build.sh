@@ -20,11 +20,13 @@ fi
 if [ -x "$(command -v podman)" ]; then
   podman build --squash-all -f Containerfile -t archlinux:${TIMESTAMP}
   podman image tag archlinux:${TIMESTAMP} archlinux:latest
+  rm busybox
   exit 0
 fi
 
 if [ -x "$(command -v docker)" ]; then
   docker build --squash -f Containerfile -t archlinux:${TIMESTAMP}
   docker image tag archlinux:${TIMESTAMP} archlinux:latest
+  rm busybox
   exit 0
 fi
