@@ -7,4 +7,4 @@ RUN rm archlinux-bootstrap-x86_64.tar.gz
 RUN sed -i '/#Server\s\=\shttps\:\/\/mirror\.archlinux\.tw/s/^#//g' /etc/pacman.d/mirrorlist
 RUN pacman -Sy
 
-CMD ["/bin/sh"]
+CMD ["/bin/bash"]
