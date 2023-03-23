@@ -1,8 +1,8 @@
-FROM scratch
+FROM scratch as prepare_rootfs
+ADD bootstrap_rootfs.tar /
 
-ADD busybox /
-COPY bootstrap_rootfs.tar /
-RUN ["/busybox", "tar", "xvf", "bootstrap_rootfs.tar", "--exclude", "bootstrap_rootfs/dev/*", "--numeric-owner", "--overwrite", "--strip-components", "1"]
-RUN rm bootstrap_rootfs.tar
+FROM scratch as base
+WORKDIR /
+COPY --from=prepare_rootfs /bootstrap_rootfs/ /
 
 CMD ["/bin/bash"]
