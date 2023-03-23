@@ -1,9 +1,9 @@
-FROM scratch
+FROM scratch as prepare_rootfs
+ADD archlinux-bootstrap-x86_64.tar.gz /
 
-ADD busybox /
-COPY archlinux-bootstrap-x86_64.tar.gz /
-RUN ["/busybox", "tar", "xvfz", "archlinux-bootstrap-x86_64.tar.gz", "--numeric-owner", "--overwrite", "--strip-components", "1"]
-RUN rm archlinux-bootstrap-x86_64.tar.gz
+FROM scratch as base
+WORKDIR /
+COPY --from=prepare_rootfs /root.x86_64/ /
 RUN sed -i '/#Server\s\=\shttps\:\/\/mirror\.archlinux\.tw/s/^#//g' /etc/pacman.d/mirrorlist
 RUN pacman -Sy
 
